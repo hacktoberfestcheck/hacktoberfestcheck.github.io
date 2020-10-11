@@ -100,7 +100,7 @@ Thanks!-->
           const January = 0;
 
           // We want to get the current month.
-          const month = 8; //new Date().getMonth(); // This is zero-based, so January is 0
+          const month = new Date().getMonth(); // This is zero-based, so January is 0
           if (month === October) return false; // October is now, so we're done.
 
           const message =
@@ -120,8 +120,7 @@ Thanks!-->
         }
 
         const overMessage = isOver();
-        if (!!overMessage) {
-        } else if (url.startsWith("https://github.com/")) {
+        if (!overMessage && url.startsWith("https://github.com/")) {
           try {
             if (loadTopics().names.includes("hacktoberfest")) {
               $("status").innerHTML +=

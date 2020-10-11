@@ -1,87 +1,172 @@
 <!DOCTYPE html>
 <html>
-<!-- Hey there! Looking for the source code for this website?
+  <!-- Hey there! Looking for the source code for this website?
 https://github.com/Kenichycmd/hacktoberfestcheck.github.io/
 If you could help contribute to my really bad code it would mean alot!
 Thanks!-->
-<head>
+  <head>
     <title>Hacktoberfest Repository Check</title>
 
-    <meta name="title" content="Hacktoberfest Repository Check">
-    <meta name="description" content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest 2020.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hacktoberfestcheck.github.io/">
-    <meta property="og:title" content="Hacktoberfest Repository Check">
-    <meta property="og:description" content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest 2020.">
-    <meta property="twitter:url" content="https://hacktoberfestcheck.github.io/">
-    <meta property="twitter:title" content="Hacktoberfest Repository Check">
-    <meta property="twitter:description" content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest 2020.">
+    <meta name="title" content="Hacktoberfest Repository Check" />
+    <meta
+      name="description"
+      content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest 2020."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hacktoberfestcheck.github.io/" />
+    <meta property="og:title" content="Hacktoberfest Repository Check" />
+    <meta
+      property="og:description"
+      content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest 2020."
+    />
+    <meta
+      property="twitter:url"
+      content="https://hacktoberfestcheck.github.io/"
+    />
+    <meta property="twitter:title" content="Hacktoberfest Repository Check" />
+    <meta
+      property="twitter:description"
+      content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest 2020."
+    />
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-        .footer {
-           position: fixed;
-           bottom: 0;
-           width: 100%;
-        }
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
     </style>
-    
+
     <script>
-        function checkStatus() {
-            var url = document.getElementById("url").value;
-            function loadTopics(){
-                var req = new XMLHttpRequest();
-                var urlflied = url.replace("github.com", "api.github.com/repos") + "/topics";
-                urlflied = urlflied.replace("//topic", "/topic");
-                req.open("GET", urlflied, false);
-                req.setRequestHeader("Accept", "application/vnd.github.mercy-preview+json");
-                req.send();
-                return JSON.parse(req.responseText);          
-            }
-            function isLabelled(){
-                var req = new XMLHttpRequest();
-                var urlflied = url.replace("github.com", "api.github.com/repos") + "/labels/hacktoberfest-accepted";
-                urlflied = urlflied.replace("//label", "/label");
-                req.open("GET", urlflied, false);
-                if (req.send() === 404) {
-                    return false;
-                }
-                return true;
-            }
-            function isOver() {
-                var end = Date.parse("10/31/2020");
-                var today = new Date();
-                if (today > end) return true;
-                return false;
-            }
-            if (isOver()) {
-                document.getElementById("status").innerHTML = "Hacktoberfest is sadly over. We'll have to wait for the next Hacktoberfest. (2021)";
-            } else if (url.startsWith("https://github.com/")) {
-                try {
-                    if (loadTopics().names.includes("hacktoberfest")) {
-                        document.getElementById("status").innerHTML = "This repository is opted-in Hacktoberfest 2020!";
-                    } else if (isLabelled()) {
-                        document.getElementById("status").innerHTML = "This repository might be opted-in Hacktoberfest 2020! (It has the *hacktoberfest-accepted* label)"
-                    } else {
-                        document.getElementById("status").innerHTML = "Unfortunately, this repository is not opted in Hacktoberfest 2020.<br/>(It does not include the Hacktoberfest topic.)";
-                    }
-                } catch (err) {
-                    document.getElementById("status").innerHTML = "Unfortunately, this repository is not opted in Hacktoberfest 2020.<br/>(It does not include any topics or does not exist.)";
-                }
-            } else if (url.startsWith("https://hacktoberfest.digitalocean.com")) {
-                document.getElementById("status").innerHTML = "Thats the hacktoberfest website dummy xD. (Thats where you apply for Hacktoberfest.)";
-            } else {
-                document.getElementById("status").innerHTML = "This isn't a github link. (Make sure to add a https.)";
-            }
+      /**
+       * This short-hand function makes code a bit more concise.
+       **/
+      const $ = (id) => document.getElementById(id);
+
+      /**
+       * In order to support either a URL or a USER/REPO input, this function
+       * adds some flexibility.
+       **/
+      const getRepoUrl = () =>
+        $("url").value.match(/^https:\/\//i)
+          ? $("url").value
+          : $("url").value.length > 0
+          ? `https://github.com/${$("url").value}`
+          : "";
+
+      function checkStatus() {
+        var url = getRepoUrl();
+        $("status").innerHTML = "";
+
+        function loadTopics() {
+          var req = new XMLHttpRequest();
+          var urlflied =
+            url.replace("github.com", "api.github.com/repos") + "/topics";
+          urlflied = urlflied.replace("//topic", "/topic");
+          req.open("GET", urlflied, false);
+          req.setRequestHeader(
+            "Accept",
+            "application/vnd.github.mercy-preview+json"
+          );
+          req.send();
+          return JSON.parse(req.responseText);
         }
+        function isLabelled() {
+          var req = new XMLHttpRequest();
+          var urlflied =
+            url.replace("github.com", "api.github.com/repos") +
+            "/labels/hacktoberfest-accepted";
+          urlflied = urlflied.replace("//label", "/label");
+          req.open("GET", urlflied, false);
+          if (req.send() === 404) {
+            return false;
+          }
+          return true;
+        }
+
+        /**
+         * This function tells us whether or not Hacktoberfest is over.
+         **/
+        function isOver() {
+          // These constants make the date math more clear.
+          const September = 8;
+          const October = 9;
+          const December = 11;
+          const January = 0;
+
+          // We want to get the current month.
+          const month = 8; //new Date().getMonth(); // This is zero-based, so January is 0
+          if (month === October) return false; // October is now, so we're done.
+
+          const message =
+            month === October - 1
+              ? "It's Preptember! Be ready for Hacktoberfest next month!"
+              : `Hacktoberfest is sadly over, but it will be back in ${
+                  month < October
+                    ? October - month
+                    : December - month + October + 1
+                } months.`;
+
+          // Set the message
+          $("status").innerHTML = `${message}<br/><br/>`;
+
+          // It seems like it would still be useful to show the opt-in status in Preptember.
+          return month !== September;
+        }
+
+        const overMessage = isOver();
+        if (!!overMessage) {
+        } else if (url.startsWith("https://github.com/")) {
+          try {
+            if (loadTopics().names.includes("hacktoberfest")) {
+              $("status").innerHTML +=
+                "This repository is opted-in Hacktoberfest 2020!";
+            } else if (isLabelled()) {
+              $("status").innerHTML +=
+                "This repository might be opted-in Hacktoberfest 2020! (It has the *hacktoberfest-accepted* label)";
+            } else {
+              $("status").innerHTML +=
+                "Unfortunately, this repository is not opted in Hacktoberfest 2020.<br/>(It does not include the Hacktoberfest topic.)";
+            }
+          } catch (err) {
+            $("status").innerHTML +=
+              "Unfortunately, this repository is not opted in Hacktoberfest 2020.<br/>(It does not include any topics or does not exist.)";
+          }
+        } else if (url.startsWith("https://hacktoberfest.digitalocean.com")) {
+          $("status").innerHTML +=
+            "Thats the hacktoberfest website dummy xD. (Thats where you apply for Hacktoberfest.)";
+        } else {
+          $("status").innerHTML +=
+            "This isn't a github link. (Make sure to add a https.)";
+        }
+      }
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Check if a repository is opted-in Hacktoberfest 2020!</h1>
-    <input id="url" type="text">
-    <input type="submit" value="Check" onclick="checkStatus()">
-    <p id="status">Enter a repository link then press enter to check if a repository is opted-in Hacktoberfest! Learn how to check them yourself <a href="https://github.com/hacktoberfestcheck/hacktoberfestcheck.github.io/CheckHacktoberfestTopic.md">here</a>!</p>
-    <p class="footer">Hey, if you wanna contribute to the website, create a pull request <a href="https://github.com/hacktoberfestcheck/hacktoberfestcheck.github.io">here</a>!<br/> Not associated with DigitalOcean or GitHub or any company, this was made for fun.</p>
-</body>
+    <input id="url" type="text" />
+    <input type="submit" value="Check" onclick="checkStatus()" />
+    <p id="status">
+      Enter a repository link then press enter to check if a repository is
+      opted-in Hacktoberfest! Learn how to check them yourself
+      <a
+        href="https://github.com/hacktoberfestcheck/hacktoberfestcheck.github.io/CheckHacktoberfestTopic.md"
+        >here</a
+      >!
+    </p>
+    <p class="footer">
+      Hey, if you wanna contribute to the website, create a pull request
+      <a
+        href="https://github.com/hacktoberfestcheck/hacktoberfestcheck.github.io"
+        >here</a
+      >!<br />
+      Not associated with DigitalOcean or GitHub or any company, this was made
+      for fun.
+    </p>
+  </body>
 </html>

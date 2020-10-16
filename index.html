@@ -39,6 +39,9 @@ Thanks!-->
           font-family: 'Open Sans', sans-serif;
           background-color: #e3e3e3;
         }
+        a {
+          color: orange;
+        }
         h1 {
           font-size: 58px;
           font-weight: 700;
@@ -226,6 +229,10 @@ Thanks!-->
         if (!overMessage && url.startsWith("https://github.com/")) {
           try {
             if (loadTopics().names.includes("hacktoberfest")) {
+              // if (isBanned()) {
+              //   $("status").innerHTML +=
+              //     "This repository is banned.";
+              // }
               $("status").innerHTML +=
                 "This repository is opted-in Hacktoberfest 2020!";
             } else if (isLabelled()) {
@@ -267,13 +274,59 @@ Thanks!-->
     <input class="inputbox margin" id="url" type="text" style="visibility: hidden;" />
     <input class="button" type="submit" value="Check" onclick="checkStatus()" id="checker" style="visibility: hidden;" />
     <p class="footer">
+      Learn how to check if a repository is opt-in Hacktoberfest 2020 
+      <a
+      href="https://github.com/hacktoberfestcheck/hacktoberfestcheck.github.io/blob/main/CheckHacktoberfestTopic.md"
+      >here</a
+      >
+      !
+      <br />
       Hey, if you wanna contribute to the website, create a pull request
       <a
-        href="https://github.com/hacktoberfestcheck/hacktoberfestcheck.github.io"
+        href="https://github.com/hacktoberfestcheck/hacktoberfestcheck.github.io/blob/main/CONTRIBUTING.md"
         >here</a
       >!<br />
-      Not associated with DigitalOcean or GitHub or any company, this was made
+      Not associated with 
+      <a
+      href="https://digitalocean.com/"
+      >DigitalOcean</a
+      >
+       or 
+      <a
+      href="https://github.com/"
+      >GitHub</a
+      >
+       or any company, this was made
       for fun.
+      <br />
+      Check out other Hacktoberfest-Checking repositories: 
+      <a 
+      href="https://hacktoberfest.ninja/"
+      >lukeocodes</a
+      >
+       | 
+      <a 
+      href="https://github.com/lukeocodes/hacktoberfest-checker"
+      >src</a
+      >
+      , 
+      <a href="https://hacktoberfest.cf/"
+      >mananchawla2005</a
+      >
+       | 
+      <a 
+      href="https://github.com/mananchawla2005/Hacktoberfest-Repo-Checker"
+      >src</a
+      >
+      ,
+      <a href="#"
+      >Kenichycmd</a
+      >
+       | 
+      <a 
+      href="https://github.com/Kenichycmd/hacktoberfestcheck.github.io/"
+      >src</a
+      >
     </p>
   </body>
 </html>

@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html>
+
   <!-- Hey there! Looking for the source code for this website?
-https://github.com/Kenichycmd/hacktoberfestcheck.github.io/
-If you could help contribute to my really bad code it would mean alot!
-Thanks!-->
+  https://github.com/Kenichycmd/hacktoberfestcheck.github.io/
+  If you could help contribute to my really bad code it would mean alot!
+  Thanks!
+  Table of contents:
+  SEO: Line 26
+  Style: Line 54
+  Javascript: Line 146
+  Body: Line 292
+  Cookies, Javascript: Line 295
+  Button, Theme: Line 305
+  Text, Javascript: Line 311
+  Hide, Javascript: Line 317
+  Credits: Line 322
+  -->
+
   <head>
+
+    <meta charset="utf-8"> 
+
     <title>Hacktoberfest Repository Check</title>
 
+    <!-- This is for the SEO. (SEO)-->
     <meta name="title" content="Hacktoberfest Repository Check" />
     <meta
       name="description"
@@ -34,6 +51,7 @@ Thanks!-->
       rel="stylesheet"
     >
 
+    <!-- Style for the Website. Needs fixes. (Style)-->
     <style>
         body {
           font-family: 'Open Sans', sans-serif;
@@ -58,10 +76,10 @@ Thanks!-->
         }
         .inputbox {
           font-size: 22px;
+          background-color: white;
           border-color: white;
           border-radius: 40px;
           border: 2px solid #2196F3;
-          background-color: white;
           height: 68px;
           width: 580px;
         }
@@ -114,22 +132,27 @@ Thanks!-->
           border-radius: 50%;
         }
         .button {
+          font-size: 20px;
+          font-weight: 600;
           text-align: center;
           border-radius: 40px;
           background-color: #2196F3;
-          border: none;
           color: white;
-          font-size: 20px;
-          font-weight: 600;
+          border: none;
           padding: 24px;
         }
     </style>
 
+    <!-- Searches API. Need fixes. (Javascript)-->
     <script>
       /**
        * This short-hand function makes code a bit more concise.
        **/
       const $ = (id) => document.getElementById(id);
+
+      /**
+       * This toggled variable is associated with enableDisableDark().
+       **/
 
       var toggled = false;
 
@@ -144,11 +167,14 @@ Thanks!-->
           ? `https://github.com/${$("url").value}`
           : "";
 
+      /**
+       * Dark mode?
+       * Yeah the dark mode needs fixing as well.
+       **/
       function enableDisableDark() {
         if (toggled) {
           document.body.style.backgroundColor = "#e3e3e3";
           document.body.style.color = "#000000";
-          
           toggled = false;
           document.cookie = "theme=light; expires=Tue, 1 Jan 2030 12:00:00 UTC";
         } else {
@@ -159,6 +185,10 @@ Thanks!-->
         }
       }
 
+      /**
+       * OnClick checker.
+       * Fix this if needed.
+       **/
       function newPopup() {
         $("button").parentNode.removeChild(document.getElementById("button"));
         $("url").style.visibility = "visible";
@@ -230,10 +260,10 @@ Thanks!-->
         if (!overMessage && url.startsWith("https://github.com/")) {
           try {
             if (loadTopics().names.includes("hacktoberfest")) {
-              if (isBanned()) {
-                $("status").innerHTML +=
-                  "This repository is banned.";
-              }
+              // if (isBanned()) {
+              //   $("status").innerHTML +=
+              //     "This repository is banned.";
+              // }
               $("status").innerHTML +=
                 "This repository is opted-in Hacktoberfest 2020!";
             } else if (isLabelled()) {
@@ -256,24 +286,40 @@ Thanks!-->
         }
       }
     </script>
+
   </head>
+
+  <!-- The website itself. (Body)-->
   <body>
+
+    <!-- Cookie checking. (Cookies, Javascript)-->
     <script>
+      /**
+       * Enables / Disables dark mode.
+       **/
       if (document.cookie.includes("dark")) {
         enableDisableDark();
       }
     </script>
+
+    <!-- Dark and light mode switch. (Button, Theme)-->
     <label class="switch">
       <input type="checkbox">
       <span class="slider" id="toggled" onclick="enableDisableDark()"></span>
     </label>
+
+    <!-- Current Status. (Text, Javascript)-->
     <h1 id="status">
         Check if a repository is opted-in <br />
         Hacktoberfest 2020!
     </h1>
+
+    <!-- Hides and shows stuff. (Hide, Javascript)-->
     <button class="button margin" onclick="newPopup()" id="button">Start Checking!</button>
     <input class="inputbox margin" id="url" type="text" style="visibility: hidden;" />
     <input class="button" type="submit" value="Check" onclick="checkStatus()" id="checker" style="visibility: hidden;" />
+
+    <!-- Credits! (Credits)-->
     <p class="footer">
       Learn how to check if a repository is opt-in Hacktoberfest 2020 
       <a
@@ -286,7 +332,9 @@ Thanks!-->
       <a
         href="https://github.com/hacktoberfestcheck/hacktoberfestcheck.github.io/blob/main/CONTRIBUTING.md"
         >here</a
-      >!<br />
+      >
+      !
+      <br />
       Not associated with 
       <a
       href="https://digitalocean.com/"
@@ -329,5 +377,7 @@ Thanks!-->
       >src</a
       >
     </p>
+
   </body>
+
 </html>

@@ -15,4 +15,4 @@ A lesson on how to check if a repository is available for Hacktoberfest.
 - Check for spelling for Hacktoberfest. I found some repositories that misspelt Hacktoberfest to Hactoberfest.
 - Check if the repository owner is abusive. Report them here: https://hacktoberfest.digitalocean.com/report
 ### Final message
-Please, do not spam peoples' repositories with invalid PR's, readme spelling errors, and random text. Thanks, heres a cupcake!
+Please, do not spam peoples' repositories with invalid PR's, readme spelling errors, and random text. Thanks!

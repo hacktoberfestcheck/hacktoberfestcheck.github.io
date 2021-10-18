@@ -3,6 +3,6 @@ An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-i
 
 ## Languages currently added
 - HTML (with CSS and JavaScript)
+- Python
 
 Feel free to add more languages!
-

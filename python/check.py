@@ -1,8 +1,12 @@
 import urllib.request
 import datetime
 import json
+import sys
 
-url = input("Enter a valid GitHub url: ")
+if len(sys.argv)!=1:
+    url = sys.argv[1]
+else:
+    url = input("Enter a valid GitHub url: ")
 
 if url.startswith("https://github.com/"):
 

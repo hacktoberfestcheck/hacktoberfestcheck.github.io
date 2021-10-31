@@ -27,14 +27,14 @@
     <meta name="title" content="Hacktoberfest Repository Check" />
     <meta
       name="description"
-      content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest 2020."
+      content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://hacktoberfestcheck.github.io/" />
     <meta property="og:title" content="Hacktoberfest Repository Check" />
     <meta
       property="og:description"
-      content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest 2020."
+      content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest."
     />
     <meta
       property="twitter:url"
@@ -43,7 +43,7 @@
     <meta property="twitter:title" content="Hacktoberfest Repository Check" />
     <meta
       property="twitter:description"
-      content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest 2020."
+      content="An unnecessary GitHub / Hacktoberfest check that checks if a repository is opt-in Hacktoberfest."
     />
 
     <link 
@@ -193,7 +193,7 @@
         $("button").parentNode.removeChild(document.getElementById("button"));
         $("url").style.visibility = "visible";
         $("checker").style.visibility = "visible";
-        $("status").innerHTML = "Enter a GitHub repo link to check if they are <br/>opt-in Hacktoberfest 2020"
+        $("status").innerHTML = "Enter a GitHub repo link to check if they are <br/>opt-in Hacktoberfest"
       }
 
       function checkStatus() {
@@ -265,17 +265,17 @@
               //     "This repository is banned.";
               // }
               $("status").innerHTML +=
-                "This repository is opted-in Hacktoberfest 2020!";
+                "This repository is opted-in Hacktoberfest!";
             } else if (isLabelled()) {
               $("status").innerHTML +=
-                "This repository might be opted-in Hacktoberfest 2020,<br/>It has the *hacktoberfest-accepted* label!";
+                "This repository might be opted-in Hacktoberfest,<br/>It has the *hacktoberfest-accepted* label!";
             } else {
               $("status").innerHTML +=
-                "Unfortunately, this repository is not opted in<br/>Hacktoberfest 2020,<br/>It does not include the Hacktoberfest topic.";
+                "Unfortunately, this repository is not opted in<br/>Hacktoberfest,<br/>It does not include the Hacktoberfest topic.";
             }
           } catch (err) {
             $("status").innerHTML +=
-              "Unfortunately, this repository is not opted in Hacktoberfest 2020,<br/>It does not include any topics or does not exist.";
+              "Unfortunately, this repository is not opted in Hacktoberfest,<br/>It does not include any topics or does not exist.";
           }
         } else if (url.startsWith("https://hacktoberfest.digitalocean.com")) {
           $("status").innerHTML +=
@@ -311,7 +311,7 @@
     <!-- Current Status. (Text, Javascript)-->
     <h1 id="status">
         Check if a repository is opted-in <br />
-        Hacktoberfest 2020!
+        Hacktoberfest!
     </h1>
 
     <!-- Hides and shows stuff. (Hide, Javascript)-->
@@ -321,7 +321,7 @@
 
     <!-- Credits! (Credits)-->
     <p class="footer">
-      Learn how to check if a repository is opt-in Hacktoberfest 2020 
+      Learn how to check if a repository is opt-in Hacktoberfest 
       <a
       href="https://github.com/hacktoberfestcheck/hacktoberfestcheck.github.io/blob/main/CheckHacktoberfestTopic.md"
       >here</a

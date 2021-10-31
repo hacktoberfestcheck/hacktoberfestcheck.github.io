@@ -29,8 +29,10 @@ if url.startswith("https://github.com/"):
     except:
         labelsresult = False
 
-    if datetime.date.today().month!=10:
-        print("It isn't Hacktoberfest yet!")
+    if datetime.date.today().month<10:
+        print("Hacktoberfest hasn't started yet.")
+    if datetime.date.today().month>10:
+        print("Hacktoberfest has ended, but you can wait till next year!")
     elif topicsresult:
         print("This repo is opted into Hacktoberfest! (via Topics)")
     elif labelsresult:
